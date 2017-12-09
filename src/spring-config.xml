@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    Spring Bean 自动装填: 启用 autowire属性
+    1.no            -   缺省情况下，自动配置是通过“ref”属性手动设定
+    2.byName        –   根据属性名称自动装配。如果一个bean的名称和其他bean属性的名称是一样的，将会自装配它。
+    3.byType        –   按数据类型自动装配。如果一个bean的数据类型是用其它bean属性的数据类型，兼容并自动装配它。
+    4.constructor   –   在构造函数参数的byType方式。
+    5.autodetect    –   如果找到默认的构造函数，使用“自动装配用构造”; 否则，使用“按类型自动装配”。
+    -->
+    <bean id="helloBean" class="HelloSpring.SayHello">
+        <property name="name" value="Spring" />
+    </bean>
+
+    <bean id="OutputHelper" class="LowCoupling.OutputHelper">
+        <property name="out" ref="CsvOutputGenerator" />
+    </bean>
+
+    <bean id="CsvOutputGenerator" class="LowCoupling.CsvOutputGenerator" />
+    <bean id="JsonOutputGenerator" class="LowCoupling.JsonOutputGenerator" />
+</beans>
